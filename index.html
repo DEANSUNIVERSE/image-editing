@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>𝕯𝖊𝖆𝖓'𝖘 𝖀𝖓𝖎𝖛𝖊𝖗𝖘𝖊 🍃 — Luxury AI Image Editing &amp; Prompt Generator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['Inter', 'sans-serif'] },
+colors: {
+obsidian: '#050505',
+glass: 'rgba(255, 255, 255, 0.03)',
+glassBorder: 'rgba(255, 255, 255, 0.08)',
+brand: { purple: '#7c3aed', cyan: '#06b6d4', gold: '#fbbf24' }
+},
+animation: {
+'float': 'float 6s ease-in-out infinite',
+'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+'spin-slow': 'spin 12s linear infinite',
+'orbit': 'orbit 8s linear infinite',
+},
+keyframes: {
+float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+orbit: { '0%': { transform: 'rotateX(70deg) rotateY(0deg) rotateZ(0deg)' }, '100%': { transform: 'rotateX(70deg) rotateY(360deg) rotateZ(0deg)' } }
+}
+}
+}
+}
+</script>
+<style>
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+.preserve-3d { transform-style: preserve-3d; }
+.chrome-text {
+background: linear-gradient(to bottom, #ffffff 0%, #e2e8f0 40%, #94a3b8 51%, #e2e8f0 100%);
+-webkit-background-clip: text; background-clip: text; color: transparent;
+text-shadow: 0 2px 5px rgba(0,0,0,0.2); filter: drop-shadow(0 0 1px rgba(255,255,255,0.3));
+}
+.gold-text {
+background: linear-gradient(to bottom, #fde047 0%, #eab308 50%, #a16207 100%);
+-webkit-background-clip: text; background-clip: text; color: transparent;
+filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.3));
+}
+.glass-panel {
+background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(24px);
+border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.reflection-gradient {
+mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+</style>
+</head>
+<body class="bg-obsidian text-slate-300 overflow-x-hidden selection:bg-brand-cyan/30 selection:text-white">
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow"></div>
+      <div class="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-cyan/5 rounded-full blur-[120px] mix-blend-screen animate-pulse-slow" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-obsidian/80 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-sm tracking-widest font-semibold text-white">𝕯𝖊𝖆𝖓'𝖘 𝖀𝖓𝖎𝖛𝖊𝖗𝖘𝖊 🍃</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide text-slate-400">
+          <a href="#studio" class="hover:text-white transition-colors">STUDIO</a>
+          <a href="#prompts" class="hover:text-white transition-colors">PROMPT ENGINE</a>
+          <a href="#gallery" class="hover:text-white transition-colors">GALLERY</a>
+          <a href="#dashboard" class="hover:text-white transition-colors">DASHBOARD</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-[10px] text-slate-500 hidden sm:block text-right leading-tight">
+            Owned by
+            <br />
+            <span class="text-brand-gold/80">Dean</span>
+          </span>
+          <a href="mailto:epicgameglider@gmail.com" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded text-xs font-medium transition-all border border-white/5 backdrop-blur-sm">
+            Dispatch Signal
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="relative min-h-screen flex flex-col items-center justify-center pt-20 perspective-[1000px] overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-purple/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col items-center justify-center tilt-element">
+        <div class="relative w-72 h-72 md:w-96 md:h-96 mx-auto mb-2 perspective-[1000px] group">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500/20 blur-[50px] rounded-full animate-pulse-slow"></div>
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-[120%] h-[120%] rounded-full border border-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] preserve-3d absolute animate-[spin_10s_linear_infinite]" 
+                     style="transform: rotateX(75deg) rotateY(15deg);">
+                     <div class="absolute top-0 left-1/2 w-20 h-1 bg-cyan-200 blur-[4px] -translate-x-1/2"></div>
+                </div>
+                <div class="w-[100%] h-[100%] rounded-full border-t-[3px] border-l-[1px] border-transparent border-t-brand-gold border-l-brand-gold/50 shadow-[0_0_25px_rgba(251,191,36,0.3)] preserve-3d absolute"
+                     style="animation: orbit 8s linear infinite reverse;">
+                </div>
+            </div>
+
+            <svg viewBox="0 0 200 200" class="w-full h-full relative z-20 drop-shadow-2xl">
+                <defs>
+                    <linearGradient id="vLeftGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#b45309" />
+                        <stop offset="40%" stop-color="#f59e0b" />
+                        <stop offset="60%" stop-color="#fcd34d" />
+                        <stop offset="100%" stop-color="#fffbeb" />
+                    </linearGradient>
+                    <linearGradient id="vRightGrad" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#581c87" />
+                        <stop offset="40%" stop-color="#7c3aed" />
+                        <stop offset="60%" stop-color="#a855f7" />
+                        <stop offset="100%" stop-color="#e9d5ff" />
+                    </linearGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+                <path d="M100 180 L35 30 L85 30 L100 140 Z" fill="url(#vLeftGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="1" class="drop-shadow-lg" />
+                <path d="M45 35 L75 35 L90 130 L100 180" fill="transparent" stroke="white" stroke-width="2" stroke-opacity="0.2" class="mix-blend-overlay" />
+                <path d="M100 180 L165 30 L115 30 L100 140 Z" fill="url(#vRightGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1" class="drop-shadow-lg" />
+                <path d="M165 30 L100 180" fill="transparent" stroke="#d8b4fe" stroke-width="2" filter="url(#glow)" stroke-opacity="0.8" />
+                <circle cx="20" cy="20" r="15" fill="white" class="mix-blend-overlay blur-xl animate-pulse" transform="translate(145, 10)" />
+            </svg>
+        </div>
+
+        <div class="relative z-30 text-center -mt-8 md:-mt-12">
+            <h1 class="text-6xl md:text-9xl font-black tracking-tighter scale-y-90 chrome-text">
+                DEAN'S
+            </h1>
+            <div class="text-2xl md:text-4xl font-bold tracking-[0.5em] gold-text -mt-2 md:-mt-4 uppercase flex items-center justify-center gap-4">
+                <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-gold"></span>
+                UNIVERSE
+                <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-gold"></span>
+            </div>
+        </div>
+
+        <div class="relative z-40 mt-12 flex flex-col md:flex-row items-center justify-center gap-4 animate-float">
+            <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="group relative px-8 py-3 bg-white text-black rounded-sm text-xs font-bold tracking-widest uppercase overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-300 via-white to-purple-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span class="relative flex items-center gap-2">
+                    View Repositories
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </span>
+            </a>
+            <a href="mailto:epicgameglider@gmail.com" class="px-8 py-3 rounded-sm text-xs font-bold tracking-widest uppercase text-white border border-white/20 hover:bg-white/5 transition-colors flex items-center gap-2 backdrop-blur-sm">
+                <i data-lucide="mail" class="w-4 h-4 text-brand-gold"></i>
+                Dispatch Signal
+            </a>
+        </div>
+      </div>
+    </header>
+
+    <section id="studio" class="py-24 relative z-10 bg-gradient-to-b from-obsidian to-black">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <h2 class="text-3xl font-medium tracking-tight text-white mb-2">
+              Editing Studio
+            </h2>
+            <p class="text-sm text-slate-400">
+              Drag to compare. AI enhancement in real-time.
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <button class="w-8 h-8 rounded bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition">
+              <i data-lucide="undo-2" class="w-4 h-4"></i>
+            </button>
+            <button class="w-8 h-8 rounded bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition">
+              <i data-lucide="download" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-1 overflow-hidden relative group">
+          <div class="absolute top-6 left-6 z-30 flex flex-col gap-3">
+            <div class="w-10 h-10 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-brand-cyan hover:scale-110 transition cursor-pointer">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <div class="w-10 h-10 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-brand-purple hover:scale-110 transition cursor-pointer">
+              <i data-lucide="crown" class="w-5 h-5"></i>
+            </div>
+          </div>
+
+          <div class="relative w-full h-[500px] md:h-[600px] bg-black select-none" id="comparison-container">
+            <div class="absolute inset-0 w-full h-full">
+              <img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&amp;w=2574&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover opacity-60 mix-blend-luminosity filter contrast-125 brightness-75" alt="After Edit" />
+              <div class="absolute inset-0 bg-gradient-to-tr from-brand-purple/40 to-brand-cyan/20 mix-blend-overlay"></div>
+            </div>
+
+            <div id="before-image" class="absolute inset-0 w-1/2 h-full overflow-hidden border-r border-white/50">
+              <img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&amp;w=2574&amp;auto=format&amp;fit=crop" class="absolute top-0 left-0 w-[100vw] max-w-[calc(100vw-3rem)] md:max-w-[calc(80rem)] h-full object-cover filter grayscale sepia-[.2]" alt="Before Edit" />
+              <div class="absolute top-4 left-4 bg-black/50 text-white text-[10px] px-2 py-1 rounded backdrop-blur">ORIGINAL</div>
+            </div>
+
+            <div id="slider-handle" class="absolute top-0 bottom-0 left-1/2 w-1 bg-white cursor-ew-resize z-20 flex items-center justify-center">
+              <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                <i data-lucide="chevrons-left-right" class="w-4 h-4 text-black"></i>
+              </div>
+            </div>
+
+            <div class="absolute top-4 right-4 bg-brand-cyan/20 border border-brand-cyan/50 text-brand-cyan text-[10px] px-2 py-1 rounded backdrop-blur">
+              DEAN'S PIPELINE
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompts" class="py-24 bg-gradient-to-b from-black to-obsidian">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-2 block">
+            Curated by Dean
+          </span>
+          <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">
+            God-Level Prompts
+          </h2>
+          <p class="text-slate-400 text-sm max-w-md mx-auto">
+            Copy-ready cinematic intelligence. Hover to activate preview.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[2000px]">
+          <div class="tilt-card group relative p-6 glass-panel rounded-xl hover:bg-white/5 transition-all duration-500 transform-gpu preserve-3d cursor-default">
+            <div class="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-3">
+                  <div class="p-2 rounded bg-white/5 border border-white/10 text-brand-gold"><i data-lucide="film" class="w-5 h-5"></i></div>
+                  <span class="text-[10px] uppercase tracking-wider text-slate-500 border border-white/5 px-2 py-1 rounded-full">Cinematic</span>
+                </div>
+                <h3 class="text-lg font-medium text-white mb-2 leading-tight">Ultra Cinematic Luxury</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Ultra-realistic cinematic lighting, dramatic shadows, shallow depth of field, 8K clarity, luxury color grading.</p>
+              </div>
+              <div class="flex gap-2 mt-4 pt-4 border-t border-white/5">
+                <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium py-2 rounded flex items-center justify-center gap-1.5 transition-colors">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="tilt-card group relative p-6 glass-panel rounded-xl hover:bg-white/5 transition-all duration-500 transform-gpu preserve-3d cursor-default">
+            <div class="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-3">
+                  <div class="p-2 rounded bg-white/5 border border-white/10 text-purple-400"><i data-lucide="crown" class="w-5 h-5"></i></div>
+                  <span class="text-[10px] uppercase tracking-wider text-slate-500 border border-white/5 px-2 py-1 rounded-full">Fashion</span>
+                </div>
+                <h3 class="text-lg font-medium text-white mb-2 leading-tight">Dark Royal Elite</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Obsidian blacks, gold highlights, moody lighting, high contrast, royal tones, premium fashion campaign style.</p>
+              </div>
+              <div class="flex gap-2 mt-4 pt-4 border-t border-white/5">
+                <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium py-2 rounded flex items-center justify-center gap-1.5 transition-colors">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="tilt-card group relative p-6 glass-panel rounded-xl hover:bg-white/5 transition-all duration-500 transform-gpu preserve-3d cursor-default">
+            <div class="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <div class="flex justify-between items-start mb-3">
+                  <div class="p-2 rounded bg-white/5 border border-white/10 text-brand-cyan"><i data-lucide="zap" class="w-5 h-5"></i></div>
+                  <span class="text-[10px] uppercase tracking-wider text-slate-500 border border-white/5 px-2 py-1 rounded-full">Sci-Fi</span>
+                </div>
+                <h3 class="text-lg font-medium text-white mb-2 leading-tight">Neon Cyberpunk God</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Cyberpunk neon glow, electric blue and magenta lighting, rain reflections, futuristic atmosphere, holographic highlights.</p>
+              </div>
+              <div class="flex gap-2 mt-4 pt-4 border-t border-white/5">
+                <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium py-2 rounded flex items-center justify-center gap-1.5 transition-colors">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="py-24 relative overflow-hidden bg-obsidian">
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+          <div class="max-w-xl">
+            <span class="text-brand-cyan text-xs font-semibold tracking-widest uppercase">DEAN'S CONTROL CENTER</span>
+            <h2 class="text-4xl font-medium tracking-tight text-white mt-2 mb-4">System Mainframe</h2>
+            <p class="text-slate-400 text-sm">High-velocity repository and user telemetry dashboard. Managed under Dean's Universe.</p>
+          </div>
+          <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="bg-white text-black px-8 py-3 rounded text-sm font-semibold hover:scale-105 transition-transform">View Repositories</a>
+        </div>
+
+        <div class="glass-panel rounded-2xl border border-white/10 p-6 md:p-8 relative shadow-2xl overflow-hidden">
+          <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 border border-white/20 overflow-hidden relative flex items-center justify-center font-bold text-white">
+                D
+              </div>
+              <div>
+                <div class="text-white text-sm font-medium">Dean // Architect</div>
+                <div class="text-brand-gold text-[10px] uppercase tracking-wider">Master Registry</div>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="text-right hidden sm:block font-mono">
+                <div class="text-slate-400 text-[10px] uppercase">Repositories</div>
+                <div class="text-white text-lg">2,500+ Files</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div class="text-slate-400 text-[10px] uppercase mb-1 tracking-wider">Files Managed</div>
+              <div class="text-2xl text-white font-light">2,500+</div>
+            </div>
+            <div class="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div class="text-slate-400 text-[10px] uppercase mb-1 tracking-wider">Active Deployments</div>
+              <div class="text-2xl text-white font-light">Netlify Edge</div>
+            </div>
+            <div class="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div class="text-slate-400 text-[10px] uppercase mb-1 tracking-wider">Frame Budget</div>
+              <div class="text-2xl text-white font-light">240 FPS</div>
+            </div>
+            <div class="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div class="text-slate-400 text-[10px] uppercase mb-1 tracking-wider">Architecture</div>
+              <div class="text-2xl text-white font-light">Zero Bloat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-black pt-20 pb-12 relative z-10">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="mb-12">
+          <div class="w-12 h-12 mx-auto mb-6 rounded-full bg-gradient-to-br from-brand-gold to-orange-600 flex items-center justify-center text-black font-bold text-xl">
+              𝕯
+          </div>
+          <h2 class="text-2xl md:text-3xl font-medium text-white mb-2">
+            "Absolute precision. Zero framework bloat."
+          </h2>
+          <p class="text-slate-500 text-sm font-mono">
+            epicgameglider@gmail.com
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-600 uppercase tracking-widest border-t border-white/5 pt-8 font-mono">
+          <div>𝕯𝖊𝖆𝖓'𝖘 𝖀𝖓𝖎𝖛𝖊𝖗𝖘𝖊 🍃 &copy; 2026 DINESH YADAV. ALL RIGHTS RESERVED.</div>
+          <div class="flex gap-6 mt-4 md:mt-0">
+            <a href="https://github.com/DEANSUNIVERSE" target="_blank" class="hover:text-white transition">GitHub</a>
+            <a href="mailto:epicgameglider@gmail.com" class="hover:text-white transition">Dispatch Signal</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+
+      document.addEventListener('mousemove', (e) => {
+          const cards = document.querySelectorAll('.tilt-card');
+          const hero = document.querySelector('.tilt-element');
+          const mouseX = e.clientX, mouseY = e.clientY;
+          const windowWidth = window.innerWidth, windowHeight = window.innerHeight;
+
+          if(hero) {
+              const x = (windowWidth / 2 - mouseX) / 40;
+              const y = (windowHeight / 2 - mouseY) / 40;
+              hero.style.transform = `rotateX(${y}deg) rotateY(${-x}deg)`;
+          }
+
+          cards.forEach(card => {
+              const rect = card.getBoundingClientRect();
+              const cardX = rect.left + rect.width / 2;
+              const cardY = rect.top + rect.height / 2;
+              const dist = Math.hypot(mouseX - cardX, mouseY - cardY);
+              
+              if (dist < 600) {
+                  const angleX = (cardY - mouseY) / 20;
+                  const angleY = (mouseX - cardX) / 20;
+                  card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+              } else {
+                  card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
+              }
+          });
+      });
+
+      const container = document.getElementById('comparison-container');
+      const beforeImage = document.getElementById('before-image');
+      const handle = document.getElementById('slider-handle');
+
+      if(container && beforeImage && handle) {
+          const slide = (x) => {
+              const rect = container.getBoundingClientRect();
+              let position = ((x - rect.left) / rect.width) * 100;
+              position = Math.max(0, Math.min(100, position));
+              beforeImage.style.width = `${position}%`;
+              handle.style.left = `${position}%`;
+          }
+          container.addEventListener('mousemove', (e) => slide(e.clientX));
+          container.addEventListener('touchmove', (e) => slide(e.touches[0].clientX));
+      }
+    </script>
+  </body>
+</html>
